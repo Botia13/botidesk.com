@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Engineer Roadmap · BotiDesk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,500&family=JetBrains+Mono:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg: #F5F1EB;
+    --bg2: #EDE9E1;
+    --ink: #18140F;
+    --ink2: #5A5040;
+    --ink3: #9A8E7E;
+    --rule: #D6CEC0;
+    --red: #D94F2B;
+    --blue: #1D4ED8;
+    --green: #047857;
+    --gold: #B45309;
+    --phase1: #0E7490;   /* teal */
+    --phase2: #C2410C;   /* burnt orange */
+    --phase3: #6D28D9;   /* violet */
+    --new: #047857;
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+    --radius: 6px;
+    --shadow: 0 2px 16px rgba(0,0,0,0.07);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── STICKY NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(245,241,235,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 0 40px;
+    overflow-x: auto;
+  }
+  nav a {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: var(--ink3);
+    text-decoration: none;
+    padding: 14px 18px;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.15s;
+  }
+  nav a:hover { color: var(--ink); border-bottom-color: var(--rule); }
+  nav .logo {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-right: auto;
+    padding-right: 32px;
+    border-right: 1px solid var(--rule);
+    margin-right: 24px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 72px 64px 60px;
+    border-bottom: 1px solid var(--rule);
+    background: linear-gradient(135deg, #F5F1EB 0%, #EDE9E1 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    right: -100px;
+    top: -100px;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(13,116,144,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--phase1);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 6vw, 70px);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -2px;
+    margin-bottom: 6px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 700;
+    color: var(--red);
+  }
+  .hero-sub {
+    font-size: 17px;
+    color: var(--ink2);
+    max-width: 580px;
+    line-height: 1.65;
+    margin: 20px 0 36px;
+  }
+  .hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-top: 1px solid var(--rule);
+    margin-top: 8px;
+  }
+  .stat {
+    padding: 20px 36px 20px 0;
+    margin-right: 36px;
+    border-right: 1px solid var(--rule);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-val {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--ink3);
+    margin-top: 4px;
+  }
+
+  /* ── SECTION WRAPPER ── */
+  .section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 64px 48px;
+  }
+  .section-header {
+    margin-bottom: 36px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--rule);
+  }
+  .section-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--ink3);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  .section-desc {
+    color: var(--ink2);
+    font-size: 14px;
+    margin-top: 8px;
+    max-width: 640px;
+    line-height: 1.65;
+  }
+
+  /* ── GLOSSARY ── */
+  #glossary { background: var(--bg2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .glossary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .gloss-item {
+    background: var(--bg2);
+    padding: 20px 22px;
+  }
+  .gloss-term {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--red);
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+  }
+  .gloss-plain {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink2);
+    font-style: italic;
+    margin-bottom: 6px;
+  }
+  .gloss-desc {
+    font-size: 12px;
+    color: var(--ink2);
+    line-height: 1.55;
+  }
+
+  /* ── PHASE HEADER BAR ── */
+  .phase-block {
+    margin-bottom: 80px;
+  }
+  .phase-bar {
+    display: flex;
+    align-items: flex-end;
+    gap: 0;
+    margin-bottom: 32px;
+    padding: 24px 32px;
+    border-radius: var(--radius);
+    border-left: 4px solid;
+    position: relative;
+    overflow: hidden;
+  }
+  .phase-bar::before {
+    content: attr(data-number);
+    position: absolute;
+    right: 24px;
+    bottom: -10px;
+    font-family: var(--font-display);
+    font-size: 100px;
+    font-weight: 900;
+    opacity: 0.05;
+    line-height: 1;
+    letter-spacing: -6px;
+    pointer-events: none;
+  }
+  .phase-bar.p1 { background: #EFF9FB; border-color: var(--phase1); }
+  .phase-bar.p2 { background: #FFF4EE; border-color: var(--phase2); }
+  .phase-bar.p3 { background: #F5F0FF; border-color: var(--phase3); }
+  .phase-num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-bottom: 6px;
+  }
+  .phase-title {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .phase-sub { font-size: 13px; color: var(--ink2); margin-top: 4px; max-width: 540px; }
+  .phase-dur {
+    margin-left: auto;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .phase-dur-val {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .phase-dur-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--ink3);
+    margin-top: 3px;
+  }
+
+  /* ── PROJECT CARD ── */
+  .project-card {
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    background: #FDFAF6;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+    box-shadow: var(--shadow);
+  }
+  .project-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.10); }
+  .project-card.open { border-color: currentColor; }
+
+  .card-head {
+    padding: 22px 26px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .card-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+  .badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 3px;
+    border: 1px solid;
+    white-space: nowrap;
+  }
+  .badge-type   { background: #EFF9FB; color: var(--phase1); border-color: #A5D8E2; }
+  .badge-type.p2 { background: #FFF4EE; color: var(--phase2); border-color: #F4C5A8; }
+  .badge-type.p3 { background: #F5F0FF; color: var(--phase3); border-color: #C4B0F5; }
+  .badge-portfolio { background: #FEFCE8; color: var(--gold); border-color: #FCD34D; }
+  .badge-new { background: #ECFDF5; color: var(--green); border-color: #6EE7B7; }
+
+  .card-meta {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-shrink: 0;
+  }
+  .dots-wrap { text-align: right; }
+  .dots {
+    display: flex;
+    gap: 4px;
+    justify-content: flex-end;
+    margin-bottom: 3px;
+  }
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--rule);
+  }
+  .dot.on { background: var(--ink2); }
+  .dots-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: var(--ink3);
+  }
+  .weeks-wrap { text-align: right; }
+  .weeks-val {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--ink2);
+    font-weight: 600;
+  }
+  .weeks-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: var(--ink3);
+  }
+  .toggle-btn {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    color: var(--ink3);
+    width: 28px;
+    text-align: center;
+    transition: transform 0.2s;
+  }
+  .open .toggle-btn { transform: rotate(45deg); }
+
+  .card-num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--ink3);
+    margin-bottom: 4px;
+  }
+  .card-title {
+    font-family: var(--font-display);
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+  .card-plain {
+    font-size: 13px;
+    color: var(--ink2);
+    font-style: italic;
+    margin-bottom: 12px;
+    padding-left: 12px;
+    border-left: 3px solid var(--rule);
+    line-height: 1.55;
+  }
+  .card-mission {
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.65;
+    margin-bottom: 14px;
+    max-width: 780px;
+  }
+  .skill-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 16px;
+  }
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--ink3);
+    background: var(--bg2);
+    border: 1px solid var(--rule);
+    padding: 3px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.3px;
+  }
+  .expand-btn {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--ink3);
+    background: transparent;
+    border: 1px solid var(--rule);
+    padding: 6px 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .expand-btn:hover { color: var(--ink); border-color: var(--ink3); }
+
+  /* ── CARD BODY (expanded) ── */
+  .card-body {
+    display: none;
+    border-top: 1px solid var(--rule);
+  }
+  .open .card-body { display: block; }
+
+  .body-section {
+    padding: 22px 26px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .body-section:last-child { border-bottom: none; }
+  .body-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--ink3);
+    margin-bottom: 12px;
+  }
+  .body-text {
+    font-size: 13px;
+    color: var(--ink2);
+    line-height: 1.7;
+  }
+
+  .deliverables {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .deliverable {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .del-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: #FDFAF6;
+    background: var(--ink2);
+    width: 24px;
+    height: 22px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .del-text {
+    font-size: 13px;
+    color: var(--ink2);
+    line-height: 1.65;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .two-col > div:first-child {
+    border-right: 1px solid var(--rule);
+    padding-right: 26px;
+  }
+  .two-col > div:last-child {
+    padding-left: 26px;
+  }
+
+  .interview-q {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+    align-items: flex-start;
+  }
+  .iq-arrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--ink3);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .iq-text {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink2);
+    line-height: 1.5;
+  }
+
+  .stack-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .stack-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink2);
+    background: var(--bg2);
+    border: 1px solid var(--rule);
+    padding: 4px 10px;
+    border-radius: 3px;
+  }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight-box {
+    background: var(--bg2);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin-top: 0;
+  }
+  .highlight-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+  }
+  .highlight-text {
+    font-size: 13px;
+    color: var(--ink2);
+    line-height: 1.65;
+  }
+
+  /* ── PARALLEL SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 10px;
+  }
+  .skill-card {
+    background: #FDFAF6;
+    border: 1px solid var(--rule);
+    border-left: 3px solid;
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+  }
+  .skill-card-title {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 3px;
+  }
+  .skill-card-tools {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--ink3);
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+  .skill-card-when {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .skill-card-desc {
+    font-size: 12px;
+    color: var(--ink2);
+    line-height: 1.6;
+  }
+
+  /* ── STRATEGY ── */
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    gap: 10px;
+  }
+  .strategy-card {
+    background: #FDFAF6;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    display: flex;
+    gap: 16px;
+    box-shadow: var(--shadow);
+  }
+  .strategy-icon { font-size: 26px; flex-shrink: 0; line-height: 1; }
+  .strategy-title {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .strategy-text { font-size: 13px; color: var(--ink2); line-height: 1.65; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: var(--bg2);
+    padding: 32px 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  footer .foot-brand {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+  }
+  footer .foot-text {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: #6B6050;
+  }
+
+  /* ── UTILS ── */
+  .divider { border: none; border-top: 1px solid var(--rule); margin: 0; }
+  .text-phase1 { color: var(--phase1); }
+  .text-phase2 { color: var(--phase2); }
+  .text-phase3 { color: var(--phase3); }
+  .text-red { color: var(--red); }
+
+  /* ── PHASE OVERVIEW ── */
+  .phase-overview {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 48px;
+  }
+  .pov-cell {
+    background: var(--bg);
+    padding: 20px 24px;
+  }
+  .pov-num { font-family: var(--font-mono); font-size: 9px; letter-spacing: 2.5px; margin-bottom: 4px; }
+  .pov-title { font-family: var(--font-display); font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .pov-sub { font-size: 12px; color: var(--ink3); line-height: 1.4; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 720px) {
+    .hero { padding: 48px 28px 40px; }
+    nav { padding: 0 20px; }
+    .section { padding: 48px 24px; }
+    .two-col { grid-template-columns: 1fr; }
+    .two-col > div:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--rule); padding-bottom: 22px; margin-bottom: 22px; }
+    .two-col > div:last-child { padding-left: 0; }
+    .phase-overview { grid-template-columns: 1fr; }
+    footer { padding: 24px 28px; }
+    .phase-dur { display: none; }
+    .strategy-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero h1, .hero-sub, .hero-stats {
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-sub { animation-delay: 0.1s; }
+  .hero-stats { animation-delay: 0.2s; }
+</style>
+</head>
+
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <span class="logo">BotiDesk</span>
+  <a href="#overview">Overview</a>
+  <a href="#glossary">Glossary</a>
+  <a href="#phase1">Phase 1</a>
+  <a href="#phase2">Phase 2</a>
+  <a href="#phase3">Phase 3</a>
+  <a href="#skills">Skills</a>
+  <a href="#strategy">Strategy</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="overview">
+  <div class="hero-label">AI ENGINEERING PORTFOLIO ROADMAP · 2026 EDITION · BOTIDESK.COM</div>
+  <h1>From Data Scientist<br>to <em>AI Engineer.</em></h1>
+  <p class="hero-sub">
+    A project-by-project curriculum built on your existing data science foundation.
+    Every project you build here produces a real, deployable artifact — something you can demo,
+    share, and talk about in any job interview. Updated for March 2026 industry standards.
+  </p>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-val">8</div>
+      <div class="stat-label">PROJECTS TOTAL</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">7</div>
+      <div class="stat-label">PORTFOLIO-READY</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">21–27 wks</div>
+      <div class="stat-label">FULL TIMELINE</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">3</div>
+      <div class="stat-label">PHASES</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW TO USE ── -->
+<div style="background: var(--bg2); border-bottom: 1px solid var(--rule);">
+  <div class="section" style="padding-top: 40px; padding-bottom: 40px;">
+    <div class="section-eyebrow">HOW TO USE THIS ROADMAP</div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; margin-top: 16px;">
+      <div>
+        <div style="font-family: var(--font-mono); font-size: 11px; color: var(--red); font-weight: 600; margin-bottom: 6px;">① DO THE PHASES IN ORDER</div>
+        <p style="font-size: 13px; color: var(--ink2); line-height: 1.6;">Each phase builds on the previous one. Phase 1 gives you the foundations that Phase 2 relies on. Don't skip ahead.</p>
+      </div>
+      <div>
+        <div style="font-family: var(--font-mono); font-size: 11px; color: var(--red); font-weight: 600; margin-bottom: 6px;">② EXPAND EACH PROJECT CARD</div>
+        <p style="font-size: 13px; color: var(--ink2); line-height: 1.6;">Click any project to see the full details: what you'll build, what you'll learn, interview questions it prepares, and what tech stack to use.</p>
+      </div>
+      <div>
+        <div style="font-family: var(--font-mono); font-size: 11px; color: var(--red); font-weight: 600; margin-bottom: 6px;">③ READ THE GLOSSARY FIRST</div>
+        <p style="font-size: 13px; color: var(--ink2); line-height: 1.6;">If you see an industry term you don't know, it is explained in the Glossary section below. Industry vocabulary is important — learn the language.</p>
+      </div>
+      <div>
+        <div style="font-family: var(--font-mono); font-size: 11px; color: var(--red); font-weight: 600; margin-bottom: 6px;">④ BUILD, DEPLOY, DOCUMENT</div>
+        <p style="font-size: 13px; color: var(--ink2); line-height: 1.6;">Every project should end with a live demo URL and a written technical summary. A working URL is worth 10 GitHub repositories to a recruiter.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── GLOSSARY ── -->
+<div id="glossary" style="border-bottom: 1px solid var(--rule);">
+  <div class="section" style="background: var(--bg2);">
+    <div class="section-header">
+      <div class="section-eyebrow">INDUSTRY VOCABULARY</div>
+      <div class="section-title">Key Terms, Explained Simply</div>
+      <p class="section-desc">These are the terms you will hear in interviews, job postings, and team meetings. Learn what each one means in plain English before you start building.</p>
+    </div>
+    <div class="glossary-grid">
+      <div class="gloss-item">
+        <div class="gloss-term">RAG</div>
+        <div class="gloss-plain">"Give the AI access to documents before it answers"</div>
+        <div class="gloss-desc">Retrieval-Augmented Generation. Instead of relying only on what the AI learned during training, you first search your own documents for relevant information, then give that information to the AI along with the question. Result: accurate, up-to-date answers based on your real data.</div>
+      </div>
+      <div class="gloss-item">
+        <div class="gloss-term">AI AGENT</div>
+        <div class="gloss-plain">"An AI that takes actions by itself to complete a task"</div>
+        <div class="gloss-desc">An agent is an AI system that can decide what to do next, use tools (like running code or searching the web), check its results, and repeat until the task is done. Unlike a chatbot that just answers, an agent actually does work.</div>
+      </div>
+      <div class="gloss-item">
+        <div class="gloss-term">MCP</div>
+        <div class="gloss-plain">"The universal cable connector for AI tools"</div>
+        <div class="gloss-desc">Model Context Protocol. A standard created by Anthropic (the makers of Claude) that lets any AI model connect to any external tool or database using the same format. Think of it like USB-C — instead of a different cable for every device, one standard works for everything. Now adopted by OpenAI, Google, and Microsoft.</div>
+      </div>
+      <div class="gloss-item">
+        <div class="gloss-term">LangChain / LangGraph</div>
+        <div class="gloss-plain">"Toolkits for building AI pipelines and agents"</div>
+        <div class="gloss-desc">LangChain is a library that makes it easier to connect LLMs with tools, databases, and APIs. LangGraph is built on top of LangChain and lets you design AI workflows as a flowchart (called a graph) — with branching, looping, and error recovery. Used by 43% of companies building AI systems in 2025.</div>
+      </div>
+      <div class="gloss-item">
+        <div class="gloss-term">CONTEXT ENGINEERING</div>
+        <div class="gloss-plain">"Designing exactly what information the AI receives"</div>
+        <div class="gloss-desc">The 2026 evolution of "prompt engineering." Instead of just writing a good instruction (prompt), context engineering is about designing the entire information package the AI receives: the instructions, the retrieved documents, the conversation history, the available tools, and how all of it is structured.</div>
+      </div>
+      <div class="gloss-item">
+        <div class="gloss-term">VECTOR DATABASE</div>
+        <div class="gloss-plain">"A database that searches by meaning, not keywords"</div>
+        <div class="gloss-desc">Traditional databases search for exact words. A vector database converts text into numbers that represent its meaning, then finds documents that are similar in meaning to your query. Essential for RAG systems. Common tools: Qdrant, Weaviate, Pinecone.</div>
+      </div>
+      <div class="gloss-item">
+        <div class="gloss-term">EMBEDDING</div>
+        <div class="gloss-plain">"Converting text into a list of numbers that captures its meaning"</div>
+        <div class="gloss-desc">An embedding model converts any piece of text into a long list of numbers (called a vector) that represents what that text means. Two sentences with similar meanings will have similar numbers. This is how vector databases can search by meaning.</div>
+      </div>
+      <div class="gloss-item">
+        <div class="gloss-term">FINE-TUNING</div>
+        <div class="gloss-plain">"Teaching an existing AI model to be better at your specific task"</div>
+        <div class="gloss-desc">Instead of building an AI from scratch, fine-tuning takes an existing model (like Llama or Mistral) and trains it further on your specific data. The result is a model that performs much better in your domain. LoRA and QLoRA are efficient techniques that make this possible on regular hardware.</div>
+      </div>
+      <div class="gloss-item">
+        <div class="gloss-term">LLM EVALUATION (EVALS)</div>
+        <div class="gloss-plain">"Measuring how well your AI system actually works"</div>
+        <div class="gloss-desc">Evals are tests you design to measure your AI system's quality. RAGAS is a popular framework that measures things like: "Is the answer faithful to the retrieved document?" and "Is the retrieved document actually relevant to the question?" Without evals, you cannot know if your system is good or bad.</div>
+      </div>
+      <div class="gloss-item">
+        <div class="gloss-term">OBSERVABILITY / TRACING</div>
+        <div class="gloss-plain">"Seeing exactly what the AI did, step by step"</div>
+        <div class="gloss-desc">In production AI systems, you need to log every LLM call: what was the input, what was the output, how long did it take, how much did it cost. LangSmith and Langfuse are tools that do this automatically, so you can debug problems and optimize performance.</div>
+      </div>
+      <div class="gloss-item">
+        <div class="gloss-term">HUMAN-IN-THE-LOOP</div>
+        <div class="gloss-plain">"The AI pauses and asks a human for approval before continuing"</div>
+        <div class="gloss-desc">For high-stakes actions (deleting files, sending emails, making purchases), agents should pause and get human approval before proceeding. Designing where in the workflow to add these checkpoints is one of the most important skills in agent engineering.</div>
+      </div>
+      <div class="gloss-item">
+        <div class="gloss-term">MULTI-TENANT</div>
+        <div class="gloss-plain">"One system that serves many different users or organizations, each isolated from each other"</div>
+        <div class="gloss-desc">If you build a product where Company A and Company B both use it, their data must be completely separated. Company A should never see Company B's documents or history. Building this correctly is a key production engineering skill.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PHASE 1
+══════════════════════════════════════ -->
+<div id="phase1">
+<div class="section">
+
+  <div class="section-header">
+    <div class="section-eyebrow">CURRICULUM</div>
+    <div class="section-title">The Three Phases</div>
+    <p class="section-desc">The roadmap is divided into three phases. Each phase has a clear goal and produces real, deployable projects. Do them in order.</p>
+  </div>
+
+  <div class="phase-overview">
+    <div class="pov-cell">
+      <div class="pov-num text-phase1">PHASE 01 · 5–7 WEEKS</div>
+      <div class="pov-title">Foundations &amp; Tooling</div>
+      <div class="pov-sub">Build the two systems every future project depends on. RAG and structured data extraction.</div>
+    </div>
+    <div class="pov-cell">
+      <div class="pov-num text-phase2">PHASE 02 · 7–9 WEEKS</div>
+      <div class="pov-title">Agentic Systems</div>
+      <div class="pov-sub">Build three agents: one for data analysis, one for research, one that speaks the language of 2026.</div>
+    </div>
+    <div class="pov-cell">
+      <div class="pov-num text-phase3">PHASE 03 · 9–11 WEEKS</div>
+      <div class="pov-title">Production Engineering</div>
+      <div class="pov-sub">Ship systems that self-correct, scale to real users, and prove their own quality.</div>
+    </div>
+  </div>
+
+  <!-- PHASE 1 BLOCK -->
+  <div class="phase-block">
+    <div class="phase-bar p1" data-number="01">
+      <div>
+        <div class="phase-num text-phase1">PHASE 01 — FOUNDATIONS &amp; TOOLING</div>
+        <div class="phase-title">Build the Core Infrastructure</div>
+        <p class="phase-sub">Before you build agents, you need to know how to retrieve information accurately and extract structured data reliably. These are the two most-used skills in AI engineering. Both projects are portfolio-ready and immediately recognized by hiring managers.</p>
+      </div>
+      <div class="phase-dur">
+        <div class="phase-dur-val text-phase1">5–7</div>
+        <div class="phase-dur-label">WEEKS</div>
+      </div>
+    </div>
+
+    <!-- P1 -->
+    <div class="project-card" id="card-p1">
+      <div class="card-head" onclick="toggleCard('card-p1')">
+        <div class="card-badges">
+          <span class="badge badge-type">RAG ENGINEERING</span>
+          <span class="badge badge-portfolio">★ PORTFOLIO</span>
+          <div class="card-meta">
+            <div class="dots-wrap">
+              <div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="dots-label">DIFFICULTY</div>
+            </div>
+            <div class="weeks-wrap">
+              <div class="weeks-val">2–3 wks</div>
+              <div class="weeks-label">DURATION</div>
+            </div>
+            <div class="toggle-btn">+</div>
+          </div>
+        </div>
+        <div class="card-num">PROJECT 01</div>
+        <div class="card-title">Production RAG Pipeline</div>
+        <div class="card-plain">In plain English: Turn a pile of documents into a smart search engine that answers questions accurately — and prove with numbers that it works.</div>
+        <div class="card-mission">You will build a document retrieval system that ingests PDFs, Word files, and web pages, finds the most relevant content for any question, and generates a grounded answer. More importantly, you will build an evaluation framework that measures how good your system actually is — something most tutorial-level projects never do.</div>
+        <div class="skill-chips">
+          <span class="chip">RAG Architecture</span><span class="chip">Vector Databases</span><span class="chip">Embedding Models</span><span class="chip">Hybrid Search</span><span class="chip">RAGAS Evaluation</span><span class="chip">FastAPI</span><span class="chip">Streaming</span>
+        </div>
+        <button class="expand-btn">▼ FULL PROJECT BRIEF</button>
+      </div>
+      <div class="card-body">
+        <div class="body-section">
+          <div class="body-label">THE REAL-WORLD PROBLEM YOU ARE SOLVING</div>
+          <p class="body-text">Every company has thousands of internal documents — manuals, reports, contracts — that nobody can quickly search. A basic keyword search returns too many irrelevant results. This project builds the system that actually understands the meaning of a question and finds the right answer in a large collection of documents. The key differentiator: you will measure your system's accuracy with real metrics, not just "it seems to work."</p>
+        </div>
+        <div class="body-section">
+          <div class="body-label">WHAT YOU WILL BUILD — STEP BY STEP</div>
+          <div class="deliverables">
+            <div class="deliverable"><div class="del-num">01</div><div class="del-text"><strong>Document ingestion pipeline.</strong> A system that reads PDFs, HTML pages, Markdown files, and Word documents, then splits them into chunks. You will try three splitting strategies: fixed size, recursive (smarter), and semantic (splits by meaning). You will learn why the choice of chunk size matters for accuracy.</div></div>
+            <div class="deliverable"><div class="del-num">02</div><div class="del-text"><strong>Hybrid retrieval system.</strong> You will combine two search methods: dense search (finds documents with similar meaning, using embeddings) and sparse search (BM25, finds documents with matching keywords). Combining both is more accurate than either alone. Then you add a re-ranker that picks the best results from the combined list.</div></div>
+            <div class="deliverable"><div class="del-num">03</div><div class="del-text"><strong>Evaluation dashboard.</strong> Using the RAGAS framework, you will measure four things: (1) Is the answer faithful to the retrieved documents? (2) Are the retrieved documents actually relevant to the question? (3) How complete is the answer? (4) How precise is the context? These numbers will be displayed in a dashboard you can screenshot for your portfolio.</div></div>
+            <div class="deliverable"><div class="del-num">04</div><div class="del-text"><strong>FastAPI service with streaming.</strong> You will wrap everything in a REST API with Server-Sent Events (SSE), so the answer appears word by word in real time — like ChatGPT. This is the production-standard way to serve LLM responses.</div></div>
+            <div class="deliverable"><div class="del-num">05</div><div class="del-text"><strong>Comparison UI.</strong> A simple web interface where you can run the same question through different retrieval strategies and see the accuracy and speed side by side. This is the thing you show in interviews to prove your system works.</div></div>
+          </div>
+        </div>
+        <div class="body-section">
+          <div class="two-col">
+            <div>
+              <div class="body-label">WHAT MAKES THIS NON-GENERIC</div>
+              <p class="body-text">Most RAG tutorials build a chatbot that "seems to work" but has no measurements. Your version has a live benchmark dashboard with real accuracy numbers (RAGAS scores). When an interviewer asks "how do you know it works?", you will have a precise, quantitative answer. This is the difference between a junior and a senior AI engineer's approach.</p>
+              <br>
+              <div class="highlight-box">
+                <div class="highlight-label" style="color: var(--phase1);">INTERVIEW QUESTIONS THIS PREPARES</div>
+                <div class="interview-q"><span class="iq-arrow">→</span><span class="iq-text">Why does chunk size affect retrieval quality?</span></div>
+                <div class="interview-q"><span class="iq-arrow">→</span><span class="iq-text">When does dense search beat sparse search, and why?</span></div>
+                <div class="interview-q"><span class="iq-arrow">→</span><span class="iq-text">How do you evaluate an AI system when you have no labeled data?</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="body-label">TECH STACK</div>
+              <div class="stack-wrap"><span class="stack-tag">LangChain</span><span class="stack-tag">Qdrant</span><span class="stack-tag">FastAPI</span><span class="stack-tag">RAGAS</span><span class="stack-tag">Sentence-Transformers</span><span class="stack-tag">BM25s</span><span class="stack-tag">React</span><span class="stack-tag">Docker</span></div>
+              <br>
+              <div class="body-label">NEW INDUSTRY TERM YOU WILL LEARN</div>
+              <p class="body-text"><strong>Hybrid Search:</strong> The combination of meaning-based search (dense) and keyword-based search (sparse). It consistently outperforms either method alone. RRF (Reciprocal Rank Fusion) is the algorithm that merges the two result lists. This is standard in all serious production RAG systems in 2026.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- P2 -->
+    <div class="project-card" id="card-p2">
+      <div class="card-head" onclick="toggleCard('card-p2')">
+        <div class="card-badges">
+          <span class="badge badge-type">AGENTS + STRUCTURED EXTRACTION</span>
+          <span class="badge badge-portfolio">★ PORTFOLIO</span>
+          <span class="badge badge-new">✦ YOUR IDEA</span>
+          <div class="card-meta">
+            <div class="dots-wrap">
+              <div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="dots-label">DIFFICULTY</div>
+            </div>
+            <div class="weeks-wrap">
+              <div class="weeks-val">2–3 wks</div>
+              <div class="weeks-label">DURATION</div>
+            </div>
+            <div class="toggle-btn">+</div>
+          </div>
+        </div>
+        <div class="card-num">PROJECT 02</div>
+        <div class="card-title">AI Resume Builder + Job Intelligence Agent</div>
+        <div class="card-plain">In plain English: Type in a job posting URL. The agent reads it, understands what the company wants, and rewrites your resume specifically for that job — in 30 seconds.</div>
+        <div class="card-mission">You will build an agent that scrapes any job posting, extracts what the company is really looking for (even the unstated requirements), matches those requirements against your experience, and generates a tailored resume with a match score. Your demo audience is recruiters — you can literally demo this in the interview itself.</div>
+        <div class="skill-chips">
+          <span class="chip">LangGraph (Basic)</span><span class="chip">Web Scraping + LLM Extraction</span><span class="chip">Structured Outputs / Pydantic</span><span class="chip">Prompt Engineering</span><span class="chip">RAG as Knowledge Base</span><span class="chip">PDF Generation</span>
+        </div>
+        <button class="expand-btn">▼ FULL PROJECT BRIEF</button>
+      </div>
+      <div class="card-body">
+        <div class="body-section">
+          <div class="body-label">THE REAL-WORLD PROBLEM YOU ARE SOLVING</div>
+          <p class="body-text">Customizing a resume for each job application takes 1–2 hours and most people skip it. Those who do it manually miss half the important keywords. This agent automates the whole pipeline: read the job → understand requirements → match to your experience → write a tailored resume → score how well it fits. A 2-hour task becomes 30 seconds. This also teaches you LangGraph at a beginner level, which you will use at an advanced level in Phase 2.</p>
+        </div>
+        <div class="body-section">
+          <div class="body-label">WHAT YOU WILL BUILD — STEP BY STEP</div>
+          <div class="deliverables">
+            <div class="deliverable"><div class="del-num">01</div><div class="del-text"><strong>Web scraper tool.</strong> Given any job posting URL, the scraper extracts the raw text. An LLM then converts that messy text into clean, structured data: required skills, nice-to-have skills, seniority level, company culture keywords, and the hidden requirements buried in the description.</div></div>
+            <div class="deliverable"><div class="del-num">02</div><div class="del-text"><strong>Candidate knowledge base.</strong> Your experience, projects, education, and skills are stored as a RAG corpus (the system you built in Project 1). When writing the resume, the agent retrieves the most relevant parts of your background for each job requirement. This ensures the resume is accurate — the AI only uses real experience you have.</div></div>
+            <div class="deliverable"><div class="del-num">03</div><div class="del-text"><strong>ATS keyword optimizer.</strong> ATS stands for Applicant Tracking System — the software most companies use to filter resumes before a human sees them. Your agent compares the generated resume against the job description, flags missing important keywords, and suggests additions. It does this without inventing experience you don't have.</div></div>
+            <div class="deliverable"><div class="del-num">04</div><div class="del-text"><strong>Structured output pipeline.</strong> Using Pydantic schemas (a Python tool for defining data structures), every resume section is generated in a consistent, well-formatted structure. This is how you make LLM outputs reliable and predictable — a critical production skill.</div></div>
+            <div class="deliverable"><div class="del-num">05</div><div class="del-text"><strong>Three output formats + match score.</strong> The system generates: (1) a formatted PDF resume, (2) an ATS-plain-text version, and (3) a LinkedIn summary. It also gives a 0–100 match score that explains which requirements you meet strongly and which are gaps.</div></div>
+            <div class="deliverable"><div class="del-num">06</div><div class="del-text"><strong>LangGraph orchestration.</strong> The full pipeline runs as a LangGraph state machine: Scraper → Extractor → Matcher → Writer → Optimizer nodes. Each step passes its result to the next. You will learn how to build, debug, and trace a basic agent graph — the foundation for everything in Phase 2.</div></div>
+          </div>
+        </div>
+        <div class="body-section">
+          <div class="two-col">
+            <div>
+              <div class="body-label">WHAT MAKES THIS NON-GENERIC</div>
+              <p class="body-text">Your portfolio audience is recruiters. Showing a recruiter a live demo where you type a job URL and watch a tailored resume appear in 30 seconds is immediately understood. It also demonstrates a complete engineering pipeline: data extraction → retrieval → generation → evaluation — all in one coherent product. The match score makes it measurable, not just "it generated something."</p>
+              <br>
+              <div class="highlight-box">
+                <div class="highlight-label" style="color: var(--phase1);">INTERVIEW QUESTIONS THIS PREPARES</div>
+                <div class="interview-q"><span class="iq-arrow">→</span><span class="iq-text">How do you extract structured data reliably from messy web pages?</span></div>
+                <div class="interview-q"><span class="iq-arrow">→</span><span class="iq-text">What is Pydantic and why does it matter for LLM outputs?</span></div>
+                <div class="interview-q"><span class="iq-arrow">→</span><span class="iq-text">How would you prevent the agent from hallucinating experience you don't have?</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="body-label">TECH STACK</div>
+              <div class="stack-wrap"><span class="stack-tag">LangGraph</span><span class="stack-tag">BeautifulSoup</span><span class="stack-tag">Instructor / Pydantic</span><span class="stack-tag">LangChain</span><span class="stack-tag">FastAPI</span><span class="stack-tag">WeasyPrint</span><span class="stack-tag">React</span></div>
+              <br>
+              <div class="body-label">NEW INDUSTRY TERM YOU WILL LEARN</div>
+              <p class="body-text"><strong>Structured Outputs:</strong> Getting an LLM to return data in a predictable format (like JSON) instead of free-form text. Instructor is a Python library that wraps LLMs and forces them to return data that matches a Pydantic schema. Without this, LLM outputs are unreliable in production systems.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /phase1 block -->
+
+<!-- PHASE 2 BLOCK -->
+<div id="phase2" class="phase-block">
+  <div class="phase-bar p2" data-number="02">
+    <div>
+      <div class="phase-num text-phase2">PHASE 02 — AGENTIC SYSTEMS</div>
+      <div class="phase-title">Build Agents That Do Real Work</div>
+      <p class="phase-sub">In Phase 2, you stop building pipelines and start building agents — systems that reason, plan, use tools, and work autonomously. You will build three agents, each teaching a different architectural pattern. Phase 2 also includes your first MCP project, which is the most important new protocol in AI engineering as of 2026.</p>
+    </div>
+    <div class="phase-dur">
+      <div class="phase-dur-val text-phase2">7–9</div>
+      <div class="phase-dur-label">WEEKS</div>
+    </div>
+  </div>
+
+  <!-- P3 -->
+  <div class="project-card" id="card-p3">
+    <div class="card-head" onclick="toggleCard('card-p3')">
+      <div class="card-badges">
+        <span class="badge badge-type p2">LANGGRAPH AGENTIC LOOP</span>
+        <span class="badge badge-portfolio">★ PORTFOLIO</span>
+        <div class="card-meta">
+          <div class="dots-wrap">
+            <div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></div>
+            <div class="dots-label">DIFFICULTY</div>
+          </div>
+          <div class="weeks-wrap">
+            <div class="weeks-val">2–3 wks</div>
+            <div class="weeks-label">DURATION</div>
+          </div>
+          <div class="toggle-btn">+</div>
+        </div>
+      </div>
+      <div class="card-num">PROJECT 03</div>
+      <div class="card-title">Autonomous Data Analyst Agent</div>
+      <div class="card-plain">In plain English: Upload any spreadsheet or dataset. The agent figures out what's interesting, writes the code to analyze it, runs the code, fixes any errors by itself, and delivers a report — without you writing a single line of analysis code.</div>
+      <div class="card-mission">This is where your data science background becomes a superpower. You know exactly what good data analysis looks like. Now you encode that knowledge into a set of tools that an AI agent can use autonomously. The agent does in 2 minutes what used to take you 2 hours.</div>
+      <div class="skill-chips">
+        <span class="chip">LangGraph State Machines</span><span class="chip">Tool Use / Function Calling</span><span class="chip">ReAct Agent Pattern</span><span class="chip">Human-in-the-Loop</span><span class="chip">Code Execution Sandboxing</span><span class="chip">Streaming UI</span>
+      </div>
+      <button class="expand-btn">▼ FULL PROJECT BRIEF</button>
+    </div>
+    <div class="card-body">
+      <div class="body-section">
+        <div class="body-label">THE REAL-WORLD PROBLEM YOU ARE SOLVING</div>
+        <p class="body-text">Every company has data analysts who spend hours doing the same exploratory analysis on every new dataset: check distributions, find outliers, look for correlations, test hypotheses, make charts. This is valuable work but it follows a repeatable pattern. This agent automates the pattern while preserving the insight. Because you already know what good analysis looks like, you are uniquely qualified to design this agent's tools correctly.</p>
+      </div>
+      <div class="body-section">
+        <div class="body-label">WHAT YOU WILL BUILD — STEP BY STEP</div>
+        <div class="deliverables">
+          <div class="deliverable"><div class="del-num">01</div><div class="del-text"><strong>LangGraph state machine with five nodes.</strong> The agent's workflow is: Plan (decide what to analyze) → Code (write Python to do the analysis) → Execute (run the code safely) → Reflect (read the output and decide what to do next) → Report (write a narrative report). Each step is a separate node. LangGraph manages the flow and lets you add conditional logic — for example, if code execution fails, go back to the Code node and fix it.</div></div>
+          <div class="deliverable"><div class="del-num">02</div><div class="del-text"><strong>Data science tool suite.</strong> You will build a set of tools the agent can call: pandas profiling (automatic summary of any dataset), statistical tests (t-test, chi-square, correlation), anomaly detection, and Plotly chart generation. These tools encode your data science knowledge — the agent does not need to figure out how to do statistics, it just calls the right tool.</div></div>
+          <div class="deliverable"><div class="del-num">03</div><div class="del-text"><strong>Safe Python code execution.</strong> The agent writes and runs real Python code. You will build a sandboxed execution environment with: timeout handling (stops runaway code), stdout and stderr capture (the agent reads its own error messages), and error recovery (the agent rewrites its code when it sees an error). This is how production AI coding systems work.</div></div>
+          <div class="deliverable"><div class="del-num">04</div><div class="del-text"><strong>Human-in-the-loop checkpoints.</strong> If the agent detects a problem — unusual data types, very high missing-value rates, conflicting distributions — it pauses and asks you a clarifying question before continuing. You will learn where to put human checkpoints and where to let the agent run freely.</div></div>
+          <div class="deliverable"><div class="del-num">05</div><div class="del-text"><strong>Auto-generated HTML report.</strong> The final output is a professional HTML report containing: executive summary, all generated visualizations, statistical findings, and the agent's code. The report looks like something a senior data analyst wrote — because the tools behind it were designed by one (you).</div></div>
+        </div>
+      </div>
+      <div class="body-section">
+        <div class="two-col">
+          <div>
+            <div class="body-label">WHAT MAKES THIS NON-GENERIC</div>
+            <p class="body-text">Most agent demos do trivial tasks like "search the web and summarize results." This agent does complex analytical work on real data. You can walk into any interview, hand them a CSV, run the agent live, and show a complete analysis report in 2 minutes. Your DS background is the reason the tools are actually good — not toy examples. This combination of domain expertise + agent architecture is rare.</p>
+            <br>
+            <div class="highlight-box">
+              <div class="highlight-label" style="color: var(--phase2);">INTERVIEW QUESTIONS THIS PREPARES</div>
+              <div class="interview-q"><span class="iq-arrow">→</span><span class="iq-text">How do you stop an agent from running dangerous or infinite-loop code?</span></div>
+              <div class="interview-q"><span class="iq-arrow">→</span><span class="iq-text">When do you add human-in-the-loop versus full automation?</span></div>
+              <div class="interview-q"><span class="iq-arrow">→</span><span class="iq-text">How does LangGraph's state machine differ from a simple while loop?</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="body-label">TECH STACK</div>
+            <div class="stack-wrap"><span class="stack-tag">LangGraph</span><span class="stack-tag">Claude API</span><span class="stack-tag">Python REPL Tool</span><span class="stack-tag">Pandas</span><span class="stack-tag">Plotly</span><span class="stack-tag">FastAPI</span><span class="stack-tag">React</span><span class="stack-tag">Docker</span></div>
+            <br>
+            <div class="body-label">KEY AGENT PATTERN YOU WILL LEARN</div>
+            <p class="body-text"><strong>ReAct Pattern:</strong> Reason + Act. The agent alternates between thinking about what to do next (reason) and actually doing it (act), then observes the result and reasons again. This back-and-forth loop is how most real-world agents work. LangGraph makes this loop explicit and controllable.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- P4 -->
+  <div class="project-card" id="card-p4">
+    <div class="card-head" onclick="toggleCard('card-p4')">
+      <div class="card-badges">
+        <span class="badge badge-type p2">MULTI-AGENT PIPELINE</span>
+        <span class="badge badge-portfolio">★ PORTFOLIO</span>
+        <span class="badge badge-new">✦ YOUR IDEA</span>
+        <div class="card-meta">
+          <div class="dots-wrap">
+            <div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></div>
+            <div class="dots-label">DIFFICULTY</div>
+          </div>
+          <div class="weeks-wrap">
+            <div class="weeks-val">3–4 wks</div>
+            <div class="weeks-label">DURATION</div>
+          </div>
+          <div class="toggle-btn">+</div>
+        </div>
+      </div>
+      <div class="card-num">PROJECT 04</div>
+      <div class="card-title">Research Paper → Implementation Agent</div>
+      <div class="card-plain">In plain English: Give the agent a scientific paper PDF. It reads the paper, understands the method, writes the code to reproduce the experiments, runs them, and tells you how close the results are to what the paper claimed.</div>
+      <div class="card-mission">This is the most unique project in the entire roadmap. Reproducing ML research is something PhD students spend weeks doing. Your multi-agent system does it autonomously — and when it can't fully reproduce results (due to compute limits), it explains exactly why and estimates what would happen at full scale.</div>
+      <div class="skill-chips">
+        <span class="chip">Multi-Agent Orchestration</span><span class="chip">LangGraph Sub-Agents</span><span class="chip">PDF Parsing</span><span class="chip">Automated Code Generation</span><span class="chip">Compute-Aware Planning</span><span class="chip">Scientific Benchmarking</span>
+      </div>
+      <button class="expand-btn">▼ FULL PROJECT BRIEF</button>
+    </div>
+    <div class="card-body">
+      <div class="body-section">
+        <div class="body-label">THE REAL-WORLD PROBLEM YOU ARE SOLVING</div>
+        <p class="body-text">AI research is published at a pace that is impossible to follow manually. Researchers and engineers need to quickly evaluate whether a new technique works, but reproducing the experiments takes days or weeks. This agent compresses that to hours. It also handles the common situation where the paper required 8 powerful GPUs but you only have a laptop — the agent scales the experiment down and tells you how confident the scaled result is. This is recursive proof of AI capability: an AI agent that understands and implements AI research.</p>
+      </div>
+      <div class="body-section">
+        <div class="body-label">WHAT YOU WILL BUILD — STEP BY STEP</div>
+        <div class="deliverables">
+          <div class="deliverable"><div class="del-num">01</div><div class="del-text"><strong>Parser Agent.</strong> Reads the PDF and extracts structured information: the model architecture, the training procedure, the hyperparameters (learning rate, batch size, etc.), the datasets used, and the metrics reported. Handles figures, tables, and equations. Outputs clean structured JSON.</div></div>
+          <div class="deliverable"><div class="del-num">02</div><div class="del-text"><strong>Planner Agent.</strong> Takes the Parser Agent's output and creates an ordered implementation checklist. It identifies what code needs to be written in what order, what Python packages are needed, and which parts of the paper are underspecified (missing details that are common in academic papers).</div></div>
+          <div class="deliverable"><div class="del-num">03</div><div class="del-text"><strong>Coder Agent.</strong> Writes modular Python code to implement the paper's method. It uses the paper's exact variable names and notation to make the code traceable back to the paper. It also writes unit tests for each component.</div></div>
+          <div class="deliverable"><div class="del-num">04</div><div class="del-text"><strong>Environment Agent.</strong> Reads the dependency list from the Planner, creates a virtual environment, installs all packages, and handles version conflicts. Fully automated — no manual setup required.</div></div>
+          <div class="deliverable"><div class="del-num">05</div><div class="del-text"><strong>Evaluator Agent.</strong> Runs the experiments and captures the metrics. Then compares your results to the paper's reported numbers, with statistical analysis: "Our result was X. The paper reported Y. The difference is Z, which is within/outside the expected range of experimental variance."</div></div>
+          <div class="deliverable"><div class="del-num">06</div><div class="del-text"><strong>Compute Estimator.</strong> The most unique feature. If the paper required more compute than you have, the agent runs a scaled-down version and extrapolates: "At 10% scale, we got X. Based on the scaling curves in the paper, we estimate full-scale would produce Y with ±Z confidence." This handles the real-world situation where most papers are not reproducible on a laptop.</div></div>
+          <div class="deliverable"><div class="del-num">07</div><div class="del-text"><strong>Reporter Agent.</strong> Generates a structured reproduction report: what matched, what diverged, why it likely diverged, and what hardware/time would be needed to close the gap. This report is the final portfolio artifact.</div></div>
+        </div>
+      </div>
+      <div class="body-section">
+        <div class="two-col">
+          <div>
+            <div class="body-label">WHAT MAKES THIS NON-GENERIC</div>
+            <p class="body-text">No one has this in their portfolio. It is technically deep (multi-agent, code generation, scientific evaluation), immediately impressive in a demo, and understood by any ML researcher or AI engineer. The Compute Estimator feature alone is a conversation-stopper in interviews. It shows you understand real-world constraints, not just ideal scenarios.</p>
+            <br>
+            <div class="highlight-box">
+              <div class="highlight-label" style="color: var(--phase2);">INTERVIEW QUESTIONS THIS PREPARES</div>
+              <div class="interview-q"><span class="iq-arrow">→</span><span class="iq-text">How do you handle a paper that omits important implementation details?</span></div>
+              <div class="interview-q"><span class="iq-arrow">→</span><span class="iq-text">How do you architect multi-agent systems to handle partial failures?</span></div>
+              <div class="interview-q"><span class="iq-arrow">→</span><span class="iq-text">What is the difference between a single agent with many tools vs multiple specialized agents?</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="body-label">TECH STACK</div>
+            <div class="stack-wrap"><span class="stack-tag">LangGraph</span><span class="stack-tag">Claude API</span><span class="stack-tag">PyMuPDF</span><span class="stack-tag">Instructor / Pydantic</span><span class="stack-tag">Docker</span><span class="stack-tag">subprocess</span><span class="stack-tag">FastAPI</span><span class="stack-tag">React</span></div>
+            <br>
+            <div class="body-label">KEY PATTERN YOU WILL LEARN</div>
+            <p class="body-text"><strong>Supervisor + Sub-Agent Architecture:</strong> One "boss" agent (the Supervisor) receives the main task and delegates subtasks to specialized workers. Each worker agent has its own tools and focus area. The Supervisor collects results and makes the final decision. This is the standard architecture for complex multi-agent systems.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- P5 -->
+  <div class="project-card" id="card-p5">
+    <div class="card-head" onclick="toggleCard('card-p5')">
+      <div class="card-badges">
+        <span class="badge badge-type p2">MCP + CONTEXT ENGINEERING</span>
+        <span class="badge badge-portfolio">★ PORTFOLIO</span>
+        <span class="badge badge-new">✦ NEW IN 2026</span>
+        <div class="card-meta">
+          <div class="dots-wrap">
+            <div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></div>
+            <div class="dots-label">DIFFICULTY</div>
+          </div>
+          <div class="weeks-wrap">
+            <div class="weeks-val">2–3 wks</div>
+            <div class="weeks-label">DURATION</div>
+          </div>
+          <div class="toggle-btn">+</div>
+        </div>
+      </div>
+      <div class="card-num">PROJECT 05</div>
+      <div class="card-title">Build Your Own MCP Server + Developer Intelligence Tool</div>
+      <div class="card-plain">In plain English: Build the "USB-C adapter" that lets any AI model connect to your own tools and data — then use it to create an AI tool that understands a codebase and helps developers work on it.</div>
+      <div class="card-mission">MCP (Model Context Protocol) is the most important new standard in AI engineering — adopted by Anthropic, OpenAI, Google, and Microsoft in 2025. Almost no portfolio projects demonstrate it. You will build a custom MCP server from scratch, then use it to power a developer tool that connects Claude to a GitHub repository and helps engineers navigate and improve code.</div>
+      <div class="skill-chips">
+        <span class="chip">MCP Protocol</span><span class="chip">Context Engineering</span><span class="chip">Claude Code SDK</span><span class="chip">Tool Design</span><span class="chip">GitHub API Integration</span><span class="chip">API Design</span>
+      </div>
+      <button class="expand-btn">▼ FULL PROJECT BRIEF</button>
+    </div>
+    <div class="card-body">
+      <div class="body-section">
+        <div class="body-label">WHY MCP IS THE MOST IMPORTANT THING TO LEARN IN 2026</div>
+        <p class="body-text">Before MCP, every AI tool that needed to connect to external data (GitHub, databases, Slack, etc.) required its own custom integration. A developer had to build separate code for "Claude connecting to GitHub" and "ChatGPT connecting to GitHub." With MCP, you build one server that connects to GitHub — and any MCP-compatible AI model can use it instantly. MCP was adopted by OpenAI in March 2025, Google DeepMind in April 2025, and is now the de facto standard. In 2026, "running an MCP server has become almost as common as running a web server." Knowing how to build one puts you ahead of most AI engineers.</p>
+      </div>
+      <div class="body-section">
+        <div class="body-label">WHAT YOU WILL BUILD — STEP BY STEP</div>
+        <div class="deliverables">
+          <div class="deliverable"><div class="del-num">01</div><div class="del-text"><strong>Custom MCP server (the foundation).</strong> Using the Python MCP SDK, you will build a server that exposes three types of primitives: Tools (actions the AI can call, like "search this repo for a function"), Resources (data the AI can read, like "get the content of this file"), and Prompts (pre-written instructions for specific tasks). You will understand the JSON-RPC 2.0 protocol that powers MCP.</div></div>
+          <div class="deliverable"><div class="del-num">02</div><div class="del-text"><strong>GitHub repository connector.</strong> Your MCP server will connect to any GitHub repository and expose tools: list files, read file contents, search code, get commit history, list open pull requests, and read PR diffs. Any AI model that supports MCP can now work with any GitHub repo through your server.</div></div>
+          <div class="deliverable"><div class="del-num">03</div><div class="del-text"><strong>Codebase semantic indexer.</strong> Beyond basic file access, your server builds a semantic index of the repository: what each module does, how functions call each other, what design patterns are used. This is Context Engineering — you are designing the richest, most useful context an AI can receive about a codebase.</div></div>
+          <div class="deliverable"><div class="del-num">04</div><div class="del-text"><strong>Developer intelligence tool.</strong> Using your MCP server, you will build a Claude-powered tool that: (1) reviews pull requests with architecture-level understanding, (2) scans repositories for technical debt and generates prioritized GitHub Issues, and (3) answers questions like "where is the authentication logic?" and "what would break if I changed this function?"</div></div>
+          <div class="deliverable"><div class="del-num">05</div><div class="del-text"><strong>GitHub Action integration.</strong> Package the tool as a GitHub Action that automatically runs on every PR. Each PR gets an AI review that understands your codebase's architecture, not just the changed lines.</div></div>
+          <div class="deliverable"><div class="del-num">06</div><div class="del-text"><strong>Context engineering documentation.</strong> Document exactly what information you chose to include in the agent's context, what you excluded, and why. This written analysis of your context design decisions is a portfolio artifact that proves senior-level thinking.</div></div>
+        </div>
+      </div>
+      <div class="body-section">
+        <div class="two-col">
+          <div>
+            <div class="body-label">WHAT MAKES THIS NON-GENERIC</div>
+            <p class="body-text">First-mover advantage. Almost nobody has an MCP server in their portfolio right now. Building one from scratch (not just using existing servers) demonstrates you understand the protocol at the architecture level, not just as a user. The fact that your server works with Claude, ChatGPT, and any future MCP-compatible AI model proves you understand the standardization — a key signal for senior roles.</p>
+            <br>
+            <div class="highlight-box">
+              <div class="highlight-label" style="color: var(--phase2);">INTERVIEW QUESTIONS THIS PREPARES</div>
+              <div class="interview-q"><span class="iq-arrow">→</span><span class="iq-text">What is MCP and why did every major AI company adopt it?</span></div>
+              <div class="interview-q"><span class="iq-arrow">→</span><span class="iq-text">What is the difference between a Tool, Resource, and Prompt in MCP?</span></div>
+              <div class="interview-q"><span class="iq-arrow">→</span><span class="iq-text">What is Context Engineering and how does it differ from Prompt Engineering?</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="body-label">TECH STACK</div>
+            <div class="stack-wrap"><span class="stack-tag">Python MCP SDK</span><span class="stack-tag">Claude Code SDK</span><span class="stack-tag">GitHub API / PyGithub</span><span class="stack-tag">FastAPI</span><span class="stack-tag">PostgreSQL</span><span class="stack-tag">GitHub Actions</span><span class="stack-tag">React</span></div>
+            <br>
+            <div class="body-label">2026 INDUSTRY CONTEXT</div>
+            <p class="body-text">The Thoughtworks Technology Radar (the industry's most respected technology assessment) placed MCP in "Trial" status in late 2025 — meaning: use it in production now, but with awareness. By March 2026, it is the de facto standard for AI tool integration. Employers will increasingly expect AI engineers to know this protocol.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /phase2 block -->
+
+<!-- PHASE 3 BLOCK -->
+<div id="phase3" class="phase-block">
+  <div class="phase-bar p3" data-number="03">
+    <div>
+      <div class="phase-num text-phase3">PHASE 03 — PRODUCTION ENGINEERING</div>
+      <div class="phase-title">Ship Systems That Prove Themselves</div>
+      <p class="phase-sub">Phase 3 is about production-grade systems: systems that self-correct errors, serve real users, measure their own quality, and are deployed at a real URL. These three projects are what senior AI engineers work on. They require everything you built in Phases 1 and 2.</p>
+    </div>
+    <div class="phase-dur">
+      <div class="phase-dur-val text-phase3">9–11</div>
+      <div class="phase-dur-label">WEEKS</div>
+    </div>
+  </div>
+
+  <!-- P6 -->
+  <div class="project-card" id="card-p6">
+    <div class="card-head" onclick="toggleCard('card-p6')">
+      <div class="card-badges">
+        <span class="badge badge-type p3">ADVANCED RAG — RESEARCH → PRODUCTION</span>
+        <span class="badge badge-portfolio">★ PORTFOLIO</span>
+        <div class="card-meta">
+          <div class="dots-wrap">
+            <div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></div>
+            <div class="dots-label">DIFFICULTY</div>
+          </div>
+          <div class="weeks-wrap">
+            <div class="weeks-val">3 wks</div>
+            <div class="weeks-label">DURATION</div>
+          </div>
+          <div class="toggle-btn">+</div>
+        </div>
+      </div>
+      <div class="card-num">PROJECT 06</div>
+      <div class="card-title">Self-Correcting Adaptive RAG</div>
+      <div class="card-plain">In plain English: Upgrade your RAG system so it checks if the documents it retrieved are actually useful — and if not, it searches again with a better question. It also detects when it's making things up and flags those answers before they reach the user.</div>
+      <div class="card-mission">You will implement two published research techniques — CRAG (Corrective RAG) and Self-RAG — as a production system. These techniques fix the biggest problem with standard RAG: it blindly trusts whatever it retrieves, even when the documents are irrelevant. Implementing research papers in production is one of the most valued skills at frontier AI companies.</div>
+      <div class="skill-chips">
+        <span class="chip">CRAG Algorithm</span><span class="chip">Self-RAG Tokens</span><span class="chip">LLM-as-Judge</span><span class="chip">Query Reformulation</span><span class="chip">Hallucination Detection (NLI)</span><span class="chip">Adaptive Retrieval</span><span class="chip">LangSmith Tracing</span>
+      </div>
+      <button class="expand-btn">▼ FULL PROJECT BRIEF</button>
+    </div>
+    <div class="card-body">
+      <div class="body-section">
+        <div class="body-label">THE REAL-WORLD PROBLEM YOU ARE SOLVING</div>
+        <p class="body-text">Standard RAG has a serious flaw: it always retrieves something, even when nothing relevant exists in the document collection. Then it generates an answer based on irrelevant documents — and the answer sounds confident but is wrong. CRAG and Self-RAG (published research papers from 2024) solve this with two mechanisms: (1) grade the retrieved documents before using them, and (2) let the model decide whether to retrieve at all. You are bringing cutting-edge research into a production system and measuring whether it actually improves accuracy.</p>
+      </div>
+      <div class="body-section">
+        <div class="body-label">WHAT YOU WILL BUILD — STEP BY STEP</div>
+        <div class="deliverables">
+          <div class="deliverable"><div class="del-num">01</div><div class="del-text"><strong>CRAG (Corrective RAG) implementation.</strong> After retrieval, a "grader" LLM reads each retrieved document and gives it a relevance score (0.0 to 1.0). Documents that score below a threshold are discarded. If too many documents are discarded, the system automatically reformulates the original question into a better search query and retrieves again. This loop continues until useful documents are found.</div></div>
+          <div class="deliverable"><div class="del-num">02</div><div class="del-text"><strong>Self-RAG implementation.</strong> Special decision tokens are added to the generation process that let the model decide: "Do I need to search for information, or can I answer from what I already know?" For knowledge-rich queries, skipping retrieval entirely is faster and equally accurate. Self-RAG reduces unnecessary retrieval by approximately 30%, making the system cheaper and faster.</div></div>
+          <div class="deliverable"><div class="del-num">03</div><div class="del-text"><strong>Adaptive chunking.</strong> A query complexity classifier reads the incoming question and decides what chunk size to use for retrieval. Simple factual questions ("What year was X founded?") work best with large chunks. Complex multi-hop reasoning ("How did X's decision in 2018 affect Y's strategy in 2021?") works best with fine-grained chunks. The system adjusts automatically.</div></div>
+          <div class="deliverable"><div class="del-num">04</div><div class="del-text"><strong>Hallucination detection layer.</strong> Using an NLI (Natural Language Inference) model, every sentence in the generated answer is checked against the retrieved source documents. If a sentence in the answer is not supported by the sources, it is flagged with a confidence score before being shown to the user. NLI is a classical NLP technique that your data science background makes easy to understand.</div></div>
+          <div class="deliverable"><div class="del-num">05</div><div class="del-text"><strong>Technical blog post.</strong> Write and publish: "Standard RAG vs CRAG vs Self-RAG — A Benchmarked Comparison." Include your actual RAGAS numbers from all three systems. This post becomes a portfolio artifact and a source of inbound recruiter interest. This is how senior AI engineers establish credibility publicly.</div></div>
+        </div>
+      </div>
+      <div class="body-section">
+        <div class="two-col">
+          <div>
+            <div class="body-label">WHAT MAKES THIS NON-GENERIC</div>
+            <p class="body-text">This project is both a GitHub repository and a published technical article. The combination of research-paper implementation + measured benchmarks + written findings is exactly what AI research roles and senior engineering roles look for. Your data science background makes the statistical analysis in the blog post credible and rigorous — you know how to run a proper experiment and present results.</p>
+            <br>
+            <div class="highlight-box">
+              <div class="highlight-label" style="color: var(--phase3);">INTERVIEW QUESTIONS THIS PREPARES</div>
+              <div class="interview-q"><span class="iq-arrow">→</span><span class="iq-text">Walk me through the CRAG algorithm step by step.</span></div>
+              <div class="interview-q"><span class="iq-arrow">→</span><span class="iq-text">How do you programmatically detect when an AI is hallucinating?</span></div>
+              <div class="interview-q"><span class="iq-arrow">→</span><span class="iq-text">What are the known failure modes of standard RAG?</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="body-label">TECH STACK</div>
+            <div class="stack-wrap"><span class="stack-tag">LangGraph</span><span class="stack-tag">LangSmith</span><span class="stack-tag">Qdrant</span><span class="stack-tag">Cohere Rerank</span><span class="stack-tag">RAGAS</span><span class="stack-tag">HuggingFace (NLI)</span><span class="stack-tag">FastAPI</span></div>
+            <br>
+            <div class="body-label">NEW TERM: NLI</div>
+            <p class="body-text"><strong>Natural Language Inference (NLI)</strong> is a classical NLP task: given a premise sentence and a hypothesis sentence, determine if the hypothesis is supported by the premise, contradicted by it, or unrelated. Used here to check if generated answers are supported by retrieved documents. You likely already know the underlying ML (it's a classification model).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- P7 -->
+  <div class="project-card" id="card-p7">
+    <div class="card-head" onclick="toggleCard('card-p7')">
+      <div class="card-badges">
+        <span class="badge badge-type p3">MLOPS + RESEARCH STUDY</span>
+        <span class="badge badge-portfolio">★ PORTFOLIO</span>
+        <div class="card-meta">
+          <div class="dots-wrap">
+            <div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></div>
+            <div class="dots-label">DIFFICULTY</div>
+          </div>
+          <div class="weeks-wrap">
+            <div class="weeks-val">3–4 wks</div>
+            <div class="weeks-label">DURATION</div>
+          </div>
+          <div class="toggle-btn">+</div>
+        </div>
+      </div>
+      <div class="card-num">PROJECT 07</div>
+      <div class="card-title">Fine-Tuning vs RAG Benchmark + Synthetic Data Engine</div>
+      <div class="card-plain">In plain English: Empirically answer the question every AI team argues about — "should we fine-tune a model or use RAG?" — by running a controlled experiment on a domain you know, and publishing the results.</div>
+      <div class="card-mission">You will fine-tune a small open-source model (Mistral or Llama) using your own synthetically generated training data, then run a rigorous 4-way comparison: base model vs fine-tuned vs RAG-only vs fine-tuned+RAG. Your data science background makes the statistical design of this experiment rigorous. The published findings become a career asset.</div>
+      <div class="skill-chips">
+        <span class="chip">LoRA / QLoRA Fine-Tuning</span><span class="chip">Synthetic Data Generation</span><span class="chip">Evol-Instruct Method</span><span class="chip">GGUF Quantization</span><span class="chip">Ollama Local Inference</span><span class="chip">LLM Benchmarking</span><span class="chip">W&amp;B Experiment Tracking</span>
+      </div>
+      <button class="expand-btn">▼ FULL PROJECT BRIEF</button>
+    </div>
+    <div class="card-body">
+      <div class="body-section">
+        <div class="body-label">THE REAL-WORLD PROBLEM YOU ARE SOLVING</div>
+        <p class="body-text">"Should we fine-tune or use RAG?" is asked in every senior AI engineering interview and every enterprise AI project meeting. Most people give an opinion. You will give data. This project is also where your idea for a "Synthetic Data Creator" is implemented — not as a standalone demo but as the engine that generates thousands of training examples you actually need, published as a separate open-source CLI tool.</p>
+      </div>
+      <div class="body-section">
+        <div class="body-label">WHAT YOU WILL BUILD — STEP BY STEP</div>
+        <div class="deliverables">
+          <div class="deliverable"><div class="del-num">01</div><div class="del-text"><strong>Synthetic Data Engine (CLI tool, published separately).</strong> A command-line tool that generates domain-specific training data using Claude and the Evol-Instruct method. Evol-Instruct takes simple questions and "evolves" them into harder variants (add constraints, reasoning steps, domain jargon). You configure: number of examples, difficulty distribution, domain, and output format (JSONL for fine-tuning). This becomes its own open-source GitHub repository.</div></div>
+          <div class="deliverable"><div class="del-num">02</div><div class="del-text"><strong>Domain dataset generation.</strong> Using your Synthetic Data Engine, generate 5,000+ domain-specific Q&A pairs in a domain you know (legal, medical, financial, or whatever you worked on as a data scientist). This gives your fine-tuned model a genuine knowledge advantage in that domain.</div></div>
+          <div class="deliverable"><div class="del-num">03</div><div class="del-text"><strong>LoRA/QLoRA fine-tuning.</strong> Fine-tune Mistral 7B or Llama 3.1 8B using the Unsloth library, which makes fine-tuning 4x faster on consumer hardware (a regular laptop GPU or Google Colab). LoRA works by adding small "adapter" layers to the model instead of retraining all parameters — this is how 99% of production fine-tuning is done in 2026.</div></div>
+          <div class="deliverable"><div class="del-num">04</div><div class="del-text"><strong>GGUF quantization + Ollama deployment.</strong> Convert your fine-tuned model to GGUF format (a compressed format that runs on CPU) and deploy it locally using Ollama. This makes it fast enough to run benchmarks without expensive cloud GPU costs.</div></div>
+          <div class="deliverable"><div class="del-num">05</div><div class="del-text"><strong>4-way automated benchmark.</strong> Build a pipeline that runs the same 200 test questions through all four configurations — base model, fine-tuned, RAG-only, fine-tuned+RAG — and scores each answer using an LLM-as-judge and a rubric. Results are tracked in Weights & Biases (W&B) for reproducibility.</div></div>
+          <div class="deliverable"><div class="del-num">06</div><div class="del-text"><strong>Published findings.</strong> Write the report: "When Fine-Tuning Beats RAG, and When It Doesn't — With Data." Include your actual benchmark numbers broken down by question type (factual recall, reasoning, synthesis), plus cost per query and knowledge update cost for each approach. Publish on Medium and Hugging Face.</div></div>
+        </div>
+      </div>
+      <div class="body-section">
+        <div class="two-col">
+          <div>
+            <div class="body-label">WHAT MAKES THIS NON-GENERIC</div>
+            <p class="body-text">The written report is the primary asset. Engineers who can design experiments, run them rigorously, and communicate findings clearly are rare. This study answers a question that companies pay AI consultants to answer. The Synthetic Data Engine, published separately on GitHub, gives you a second portfolio artifact from the same project. Both together show breadth (engineering tool) and depth (scientific study).</p>
+            <br>
+            <div class="highlight-box">
+              <div class="highlight-label" style="color: var(--phase3);">INTERVIEW QUESTIONS THIS PREPARES</div>
+              <div class="interview-q"><span class="iq-arrow">→</span><span class="iq-text">When would you choose fine-tuning over RAG? Give a decision framework.</span></div>
+              <div class="interview-q"><span class="iq-arrow">→</span><span class="iq-text">What is LoRA mathematically, and why does it work?</span></div>
+              <div class="interview-q"><span class="iq-arrow">→</span><span class="iq-text">How do you generate training data when you have no labeled dataset?</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="body-label">TECH STACK</div>
+            <div class="stack-wrap"><span class="stack-tag">Unsloth</span><span class="stack-tag">LoRA/QLoRA</span><span class="stack-tag">Ollama</span><span class="stack-tag">HuggingFace Transformers</span><span class="stack-tag">LangChain</span><span class="stack-tag">RAGAS</span><span class="stack-tag">W&amp;B</span><span class="stack-tag">FastAPI</span></div>
+            <br>
+            <div class="body-label">KEY TERMS YOU WILL LEARN</div>
+            <p class="body-text"><strong>LoRA (Low-Rank Adaptation):</strong> A technique that fine-tunes LLMs by adding small adapter layers, instead of modifying all billions of parameters. Uses 80–90% less memory than full fine-tuning. <strong>GGUF:</strong> A file format for compressed LLM models that can run efficiently on CPU. <strong>Evol-Instruct:</strong> A method to generate progressively harder training examples from simple seeds using an LLM.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- P8 -->
+  <div class="project-card" id="card-p8">
+    <div class="card-head" onclick="toggleCard('card-p8')">
+      <div class="card-badges">
+        <span class="badge badge-type p3">FULL-STACK PRODUCTION SYSTEM — CAPSTONE</span>
+        <span class="badge badge-portfolio">★ PORTFOLIO</span>
+        <span class="badge badge-new">✦ YOUR IDEA</span>
+        <div class="card-meta">
+          <div class="dots-wrap">
+            <div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></div>
+            <div class="dots-label">DIFFICULTY</div>
+          </div>
+          <div class="weeks-wrap">
+            <div class="weeks-val">4–5 wks</div>
+            <div class="weeks-label">DURATION</div>
+          </div>
+          <div class="toggle-btn">+</div>
+        </div>
+      </div>
+      <div class="card-num">PROJECT 08 — CAPSTONE</div>
+      <div class="card-title">Carpenters of Quebec — Production Agentic RAG Platform</div>
+      <div class="card-plain">In plain English: Deploy a real, working AI platform that Quebec tradespeople can actually use — in French, with multiple organizations each having their own isolated workspace, and an intelligent agent that routes different types of questions to different specialized retrieval systems.</div>
+      <div class="card-mission">This is the capstone. Every technique from every previous project comes together here: the RAG system from P1, the agent loop from P3, the MCP tools from P5, the self-correcting retrieval from P6 — all deployed at a real URL, serving real users, in French. Domain specificity is a portfolio superpower: "production AI platform for Quebec tradespeople" is unforgettable. "RAG chatbot" is not.</div>
+      <div class="skill-chips">
+        <span class="chip">Multi-Tenant Architecture</span><span class="chip">French NLP / Multilingual Embeddings</span><span class="chip">Agentic RAG Routing</span><span class="chip">Auth + Authorization</span><span class="chip">Production Cloud Deployment</span><span class="chip">AI Product Design</span>
+      </div>
+      <button class="expand-btn">▼ FULL PROJECT BRIEF</button>
+    </div>
+    <div class="card-body">
+      <div class="body-section">
+        <div class="body-label">THE REAL-WORLD PROBLEM YOU ARE SOLVING</div>
+        <p class="body-text">Quebec carpenters and tradespeople deal with CCQ (Commission de la construction du Québec) regulations, CSST safety standards, union agreements, and supplier catalogs — all in French, all spread across PDFs and government websites. Finding a specific regulation requires knowing which document to look in, which requires knowing the regulatory structure, which takes years of experience. This platform makes that knowledge instantly accessible to anyone. The specificity of the domain is what makes the project credible and memorable — it is solving a real problem for real people.</p>
+      </div>
+      <div class="body-section">
+        <div class="body-label">WHAT YOU WILL BUILD — STEP BY STEP</div>
+        <div class="deliverables">
+          <div class="deliverable"><div class="del-num">01</div><div class="del-text"><strong>Multi-tenant ingestion pipeline.</strong> Each organization (carpentry company, union, trade school) gets its own isolated namespace in the vector database. Organization A cannot see Organization B's documents. You will learn how to implement data isolation in Qdrant using namespaces, and how to enforce it at the API level with authorization middleware.</div></div>
+          <div class="deliverable"><div class="del-num">02</div><div class="del-text"><strong>French-language embedding stack.</strong> English embedding models perform poorly on French text. You will use multilingual-e5-large (the current best multilingual embedding model) and document your comparison against OpenAI's text-embedding-3-small. This is a technical decision that shows depth — most developers never think about this until retrieval quality drops.</div></div>
+          <div class="deliverable"><div class="del-num">03</div><div class="del-text"><strong>Agentic RAG with LangGraph query router.</strong> An incoming question is first classified by type: regulatory (needs CCQ documents), safety (needs CSST documents), technical (needs trade manuals), or commercial (needs supplier catalogs). The classifier routes each question to a specialized sub-agent with domain-specific retrieval configuration and prompts. This is the Agentic RAG pattern — retrieval decisions are made by an agent, not a static pipeline.</div></div>
+          <div class="deliverable"><div class="del-num">04</div><div class="del-text"><strong>Self-correcting retrieval from P6.</strong> The CRAG algorithm from Project 6 is integrated: retrieved documents are graded for relevance, poor results trigger query reformulation, and hallucinations are flagged before responses are sent.</div></div>
+          <div class="deliverable"><div class="del-num">05</div><div class="del-text"><strong>Full authentication system.</strong> JWT-based user accounts, organization workspaces, document upload permissions, and usage quotas per subscription tier. This is what makes it multi-tenant: every request is tied to an authenticated user with a specific set of permissions.</div></div>
+          <div class="deliverable"><div class="del-num">06</div><div class="del-text"><strong>Admin dashboard.</strong> Organization administrators see: which documents are uploaded, usage analytics (most searched topics, questions with no good answers, response quality ratings), and user management. This data tells you how to improve the system.</div></div>
+          <div class="deliverable"><div class="del-num">07</div><div class="del-text"><strong>Live deployment at a real URL.</strong> Docker + Cloud Run or Railway.app. Always on. A real URL you can send to anyone. This is the difference between a project and a product. Write a one-page technical case study: problem, architecture diagram, key technical decisions, performance metrics, what you would do differently.</div></div>
+        </div>
+      </div>
+      <div class="body-section">
+        <div class="two-col">
+          <div>
+            <div class="body-label">WHAT MAKES THIS NON-GENERIC</div>
+            <p class="body-text">A live URL at a real domain, for real potential users, with a bilingual technical stack, multi-tenant architecture, and a written case study. Domain specificity is what separates this from the 10,000 generic RAG chatbots in portfolios. "I built a production AI platform serving Quebec tradespeople in French, handling regulatory, safety, and commercial queries through specialized sub-agents" is a story. "I built a RAG chatbot" is not.</p>
+            <br>
+            <div class="highlight-box">
+              <div class="highlight-label" style="color: var(--phase3);">INTERVIEW QUESTIONS THIS PREPARES</div>
+              <div class="interview-q"><span class="iq-arrow">→</span><span class="iq-text">How do you isolate data between different tenants in a vector database?</span></div>
+              <div class="interview-q"><span class="iq-arrow">→</span><span class="iq-text">What changes when your embedding and generation language is not English?</span></div>
+              <div class="interview-q"><span class="iq-arrow">→</span><span class="iq-text">Walk me through your full system architecture from user query to response.</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="body-label">TECH STACK</div>
+            <div class="stack-wrap"><span class="stack-tag">LangGraph</span><span class="stack-tag">LangSmith</span><span class="stack-tag">Qdrant (namespaces)</span><span class="stack-tag">multilingual-e5-large</span><span class="stack-tag">FastAPI</span><span class="stack-tag">Next.js</span><span class="stack-tag">PostgreSQL</span><span class="stack-tag">Docker</span><span class="stack-tag">Cloud Run / Railway</span></div>
+            <br>
+            <div class="body-label">DEPLOYMENT RECOMMENDATION</div>
+            <p class="body-text">Use <strong>Railway.app</strong> for your first deployment — it handles Docker containers, databases, and environment variables with minimal configuration, and has a generous free tier. Once you're comfortable, migrate to <strong>Google Cloud Run</strong> for auto-scaling. Both work perfectly for this project. Keep it running permanently: a dead demo is worse than no demo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /phase3 block -->
+
+</div><!-- /section -->
+</div><!-- /phase1 id wrapper -->
+
+<!-- ── PARALLEL SKILLS ── -->
+<div id="skills" style="background: var(--bg2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">NOT STANDALONE PROJECTS</div>
+      <div class="section-title">Skills to Build in Parallel</div>
+      <p class="section-desc">These are not separate projects — they are habits and tools you adopt as you go. Start each one when the timeline says "From Phase X." Each one makes every project better.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card" style="border-left-color: var(--phase1);">
+        <div class="skill-card-when text-phase1">FROM PHASE 1</div>
+        <div class="skill-card-title">Structured Outputs</div>
+        <div class="skill-card-tools">Instructor · Pydantic · Zod (JS)</div>
+        <p class="skill-card-desc">Getting reliable, typed data from LLMs is essential for production. Raw LLM text output is unpredictable. Instructor + Pydantic forces LLMs to return data that matches a strict schema. Every agent tool call in this roadmap depends on this skill.</p>
+      </div>
+      <div class="skill-card" style="border-left-color: var(--phase1);">
+        <div class="skill-card-when text-phase1">FROM PHASE 1</div>
+        <div class="skill-card-title">LLM Observability</div>
+        <div class="skill-card-tools">LangSmith · Langfuse (open-source)</div>
+        <p class="skill-card-desc">You cannot debug, optimize, or explain a system you cannot see. Every LLM call should be logged: input, output, latency, tokens, cost. LangSmith is the industry default (paid). Langfuse is the open-source alternative you can self-host. Start using one from your very first project.</p>
+      </div>
+      <div class="skill-card" style="border-left-color: var(--phase2);">
+        <div class="skill-card-when text-phase2">FROM PHASE 2</div>
+        <div class="skill-card-title">Async Python</div>
+        <div class="skill-card-tools">asyncio · httpx · aiofiles</div>
+        <p class="skill-card-desc">Agent systems run many LLM calls at the same time. Synchronous (blocking) code kills performance because it waits for each call to finish before starting the next. Async Python lets you start multiple calls simultaneously. Learn this before building Phase 2 agents.</p>
+      </div>
+      <div class="skill-card" style="border-left-color: var(--phase2);">
+        <div class="skill-card-when text-phase2">FROM PHASE 2</div>
+        <div class="skill-card-title">Docker + Cloud Deployment</div>
+        <div class="skill-card-tools">Docker · Railway · Cloud Run</div>
+        <p class="skill-card-desc">A live URL is worth 10 GitHub repositories to a recruiter. Docker packages your application so it runs identically anywhere. Railway.app or Cloud Run deploys it to the internet with minimal setup. Learn Docker basics in Phase 2 so every Phase 3 project ships with a live demo.</p>
+      </div>
+      <div class="skill-card" style="border-left-color: var(--phase3);">
+        <div class="skill-card-when text-phase3">FROM PHASE 3</div>
+        <div class="skill-card-title">AI Red Teaming</div>
+        <div class="skill-card-tools">Garak · Manual adversarial testing</div>
+        <p class="skill-card-desc">Red teaming means deliberately trying to break your own AI system — testing for prompt injections, jailbreaks, misleading inputs, and failure modes. Companies building production AI need engineers who think about safety. A documented red-teaming section on any project is an extreme rarity in portfolios and signals senior thinking.</p>
+      </div>
+      <div class="skill-card" style="border-left-color: var(--phase3);">
+        <div class="skill-card-when text-phase3">THROUGHOUT</div>
+        <div class="skill-card-title">Technical Writing</div>
+        <div class="skill-card-tools">Medium · Substack · Your own site</div>
+        <p class="skill-card-desc">AI engineers who write clearly get 3× more inbound recruiter interest. Write one technical post per project — what you built, what was hard, what you measured, what you learned. Projects 6 and 7 produce posts that could genuinely go viral in the AI engineering community. Start writing before you think you're ready.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── STRATEGY ── -->
+<div id="strategy">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">HOW TO MAXIMIZE IMPACT</div>
+      <div class="section-title">Career Strategy</div>
+      <p class="section-desc">Building the projects is 60% of the work. How you present, document, and position them is the other 40%.</p>
+    </div>
+    <div class="strategy-grid">
+      <div class="strategy-card">
+        <div class="strategy-icon">📊</div>
+        <div>
+          <div class="strategy-title">Benchmark Everything — Numbers Are Credibility</div>
+          <p class="strategy-text">Your data science background makes this natural and powerful. Every project should have a metrics section with real numbers. "My RAG system achieves 87% answer relevancy on RAGAS, compared to 61% for a baseline chatbot" is infinitely more compelling than "I built a RAG system." Numbers make you credible. Opinions make you another candidate.</p>
+        </div>
+      </div>
+      <div class="strategy-card">
+        <div class="strategy-icon">✍️</div>
+        <div>
+          <div class="strategy-title">Write Every Project — Engineers Who Write Get Hired</div>
+          <p class="strategy-text">Publish a technical post for each portfolio project. The fine-tuning benchmark (P7) and the CRAG comparison (P6) are research papers in disguise — treat them that way. Post on Medium, share on LinkedIn, and link from your GitHub. AI engineers who explain their work clearly are rare. Be one of them.</p>
+        </div>
+      </div>
+      <div class="strategy-card">
+        <div class="strategy-icon">🎯</div>
+        <div>
+          <div class="strategy-title">Own the Carpentry Domain From Day One</div>
+          <p class="strategy-text">Use carpentry and trades regulation documents as your test data for Projects 1, 2, and 6. By the time you reach Project 8, you know the domain deeply and your portfolio tells a coherent story: "I specialized in AI for the trades and construction sector." A focused portfolio reads like expertise. A scattered portfolio reads like curiosity.</p>
+        </div>
+      </div>
+      <div class="strategy-card">
+        <div class="strategy-icon">🔗</div>
+        <div>
+          <div class="strategy-title">Frame the DS → AI Transition Deliberately</div>
+          <p class="strategy-text">Never hide your data science background — it is a rare advantage. In every interview and LinkedIn post, frame it: "Classical ML gave me strong foundations in statistics and evaluation rigor. AI engineering adds orchestration, retrieval, and agent design. Here is how the two combine in my work." This narrative resonates with senior hiring panels who have seen too many AI engineers who cannot evaluate their own systems.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline summary -->
+    <div style="margin-top: 48px; background: var(--ink); color: var(--bg); border-radius: var(--radius); padding: 36px 40px;">
+      <div style="font-family: var(--font-mono); font-size: 9px; letter-spacing: 3px; color: var(--ink3); margin-bottom: 12px;">FULL TIMELINE SUMMARY</div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 24px;">
+        <div>
+          <div style="font-family: var(--font-display); font-size: 20px; font-weight: 700; color: #5EEAD4; margin-bottom: 4px;">Phase 1</div>
+          <div style="font-family: var(--font-mono); font-size: 11px; color: #6B6050; margin-bottom: 8px;">5–7 WEEKS</div>
+          <div style="font-size: 12px; color: #9A8E7E; line-height: 1.5;">P1: RAG Pipeline<br>P2: Resume Builder</div>
+        </div>
+        <div>
+          <div style="font-family: var(--font-display); font-size: 20px; font-weight: 700; color: #FDBA74; margin-bottom: 4px;">Phase 2</div>
+          <div style="font-family: var(--font-mono); font-size: 11px; color: #6B6050; margin-bottom: 8px;">7–9 WEEKS</div>
+          <div style="font-size: 12px; color: #9A8E7E; line-height: 1.5;">P3: Data Analyst Agent<br>P4: Paper → Code Agent<br>P5: MCP Server</div>
+        </div>
+        <div>
+          <div style="font-family: var(--font-display); font-size: 20px; font-weight: 700; color: #C4B5FD; margin-bottom: 4px;">Phase 3</div>
+          <div style="font-family: var(--font-mono); font-size: 11px; color: #6B6050; margin-bottom: 8px;">9–11 WEEKS</div>
+          <div style="font-size: 12px; color: #9A8E7E; line-height: 1.5;">P6: Self-Correcting RAG<br>P7: Fine-Tune Benchmark<br>P8: Quebec Platform</div>
+        </div>
+        <div>
+          <div style="font-family: var(--font-display); font-size: 20px; font-weight: 700; color: white; margin-bottom: 4px;">Total</div>
+          <div style="font-family: var(--font-mono); font-size: 11px; color: #6B6050; margin-bottom: 8px;">21–27 WEEKS</div>
+          <div style="font-size: 12px; color: #9A8E7E; line-height: 1.5;">8 projects<br>7 portfolio pieces<br>1 live product</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div>
+    <div class="foot-brand">BotiDesk</div>
+    <div class="foot-text" style="margin-top: 4px;">AI ENGINEERING PORTFOLIO ROADMAP · 2026</div>
+  </div>
+  <div class="foot-text">8 PROJECTS · 7 PORTFOLIO PIECES · 21–27 WEEKS<br>UPDATED MARCH 2026</div>
+</footer>
+
+<script>
+function toggleCard(id) {
+  const card = document.getElementById(id);
+  const isOpen = card.classList.contains('open');
+  card.classList.toggle('open', !isOpen);
+  // update expand button text
+  const btn = card.querySelector('.expand-btn');
+  if (btn) btn.textContent = !isOpen ? '▲ COLLAPSE' : '▼ FULL PROJECT BRIEF';
+}
+
+// Smooth active state for nav
+const navLinks = document.querySelectorAll('nav a');
+const sections = document.querySelectorAll('[id]');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.style.borderBottomColor = a.getAttribute('href') === '#' + current ? 'var(--red)' : 'transparent';
+    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--ink)' : '';
+  });
+});
+</script>
+
+</body>
+</html>
